@@ -1,74 +1,54 @@
 package com.Bank.App;
+import java.io.IOException;
 import java.util.Scanner;
 import com.Bank.DAO.CustomerDAO;
 import com.Bank.DAO.CustomerDAOImpl;
 import com.Bank.DTO.Customer;
 
-public class UpdateAccount {
-	public static void updateAccount(Customer c)
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+@WebServlet("/update")
+public class UpdateAccount extends HttpServlet{
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	HttpSession session=req.getSession(false);
+	String accno=req.getParameter("accountNo");
+	long acc=Long.parseLong(accno);
+	String phoneno=req.getParameter("phoneNo");
+	long phone=Long.parseLong(phoneno);
+	String mail=req.getParameter("email");
+	String pins=req.getParameter("pin");
+	int pin=Integer.parseInt(pins);
+	String name=req.getParameter("name");
+	
+	Customer c=(Customer)session.getAttribute("customer");
+	CustomerDAO cdao=new CustomerDAOImpl();
+	
+	if(acc==c.getAccno())
 	{
-	 Scanner sc=new Scanner(System.in);
-	 int choice=0;
-	 CustomerDAO cdao=new CustomerDAOImpl();
-	 System.out.println("Enter your field to be updated");
-	 do {
-	 System.out.println("1. Name");
-	 System.out.println("2. Phone Number");
-	 System.out.println("3. Email ID");
-	 choice=sc.nextInt();
-	 switch(choice)
-	 {
-	 case 1:{
-	 System.out.println("Enter the new name:");
-	 c.setName(sc.next());
-	 boolean res=cdao.updateCustomer(c);
-	//updateCustomer() already overridden in deposit module inside 	CustomerDAOImpl
-	 if(res)
-	 {
-	 System.out.println("Name updated to "+c.getName()+" successfully");
-	 }
-	 else
-	 {
-	 System.out.println("failed to update the name");
-	 }
-	 break;
-	 }
-	 case 2: {
-	 System.out.println("Enter the Phone number to be updated:");
-	 c.setPhone(sc.nextLong());
-	 boolean res=cdao.updateCustomer(c);
-	//updateCustomer() already overridden in deposit module inside CustomerDAOImpl
-	 if(res)
-	 {
-	 System.out.println("Phone number updated to "+c.getPhone()+" successfully");
-	 }
-	 else
-	 {
-	 System.out.println("failed to update the phone number");
-	 }
-	 break;
-	 } 
-	 case 3: {
-	 System.out.println("Enter the Email ID to be updated:");
-	 c.setMail(sc.next());
-	 boolean res=cdao.updateCustomer(c);
-	//updateCustomer() already overridden in deposit module inside CustomerDAOImpl
-	 if(res)
-	 {
-	 System.out.println("Mail ID updated to "+c.getMail()+" successfully");
-	 }
-	 else
-	 {
-	 System.out.println("failed to update the Mail ID");
-	 }
-	 break;
-	 }
-	 case 4: System.out.println("Exit to main menu");
-	 break;
-	 default:System.out.println("Invalid choice. Enter the correct choice!");
-	 }
-	 }
-	 while(choice!=4);
+		c.setPhone(phone);
+		c.setMail(mail);
+		c.setPin(pin);
+		c.setName(name);
+		boolean res=cdao.updateCustomer(c);
+		if(res)
+		{
+			req.setAttribute("success", " Account Updated successfully");
+			 RequestDispatcher rd=req.getRequestDispatcher("UpdateAccount.jsp");
+			 rd.forward(req, resp);
+		}else {
+			req.setAttribute("failure", "Account failed to Update");
+			 RequestDispatcher rd=req.getRequestDispatcher("TransferAmount.jsp");
+			 rd.forward(req, resp);
+		}
+	}
+	
 	}
 
 

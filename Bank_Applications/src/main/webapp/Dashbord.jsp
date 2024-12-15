@@ -18,32 +18,41 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f6f9;
+            background: linear-gradient(120deg, #d4e3fc, #f9f9f9);
+            margin: 0;
         }
 
         /* Sidebar */
         .sidebar {
             height: 100vh;
-            width: 240px;
+            width: 260px;
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #1e2957;
+            background: linear-gradient(180deg, #003366, #00509e);
             color: white;
-            padding: 20px;
+            padding: 30px 20px;
+        }
+
+        .sidebar h4 {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #f8aa27;
         }
 
         .sidebar .nav-link {
-            color: #ccc;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 8px;
+            color: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
+            transition: 0.3s;
         }
 
         .sidebar .nav-link:hover {
-            background-color: #2d3e89;
+            background-color: #4c8fd1;
             color: white;
         }
 
@@ -53,75 +62,130 @@
 
         /* Navbar */
         .navbar {
-            margin-left: 240px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #ddd;
+            margin-left: 260px;
+            background: #ffffff;
+            border-bottom: 2px solid #ddd;
+            padding: 15px 20px;
         }
 
         .navbar .navbar-brand {
-            color: #1e2957;
+            color: #003366;
             font-weight: bold;
         }
 
-        .navbar .nav-item .nav-link {
-            color: #666;
+        .navbar .btn {
+            border-radius: 25px;
+            font-size: 14px;
+            padding: 5px 20px;
         }
 
-        .navbar .nav-item .nav-link:hover {
-            color: #1e2957;
+        .navbar .btn-primary {
+            background: #4CAF50;
+            border: none;
         }
 
-        /* Main Section */
+        .navbar .btn-primary:hover {
+            background: #45a049;
+        }
+
+        .navbar .btn-danger {
+            background: #f44336;
+            border: none;
+        }
+
+        .navbar .btn-danger:hover {
+            background: #e53935;
+        }
+
+        /* Main Content */
         .main-content {
-            margin-left: 240px;
-            padding: 20px;
+            margin-left: 260px;
+            padding: 30px;
         }
 
         .card {
             border: none;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .card-header {
-            background-color: #f8aa27;
+            background: linear-gradient(90deg, #003366, #00509e);
             color: white;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
+            font-weight: bold;
         }
 
         .card-body h5 {
-            font-size: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+
+        /* Table */
+        .table-bordered {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .table-bordered thead th {
+            background: #003366;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .table-bordered tbody tr:nth-child(odd) {
+            background: #f2f7ff;
+        }
+
+        .table-bordered tbody tr:nth-child(even) {
+            background: #e1efff;
+        }
+
+        .table-bordered tbody td {
+            text-align: center;
+            color: #555;
+        }
+
+        .badge.bg-success {
+            background: #4CAF50;
+        }
+
+        .badge.bg-danger {
+            background: #f44336;
         }
 
         /* Footer */
         footer {
-            margin-left: 240px;
+            margin-left: 260px;
             padding: 20px;
             background-color: #ffffff;
             border-top: 1px solid #ddd;
             text-align: center;
             font-size: 14px;
-            color: #666;
+            color: #555;
         }
     </style>
 </head>
 
 <body>
-<%Customer c=(Customer)session.getAttribute("customer"); %>
-<%TransactionDAO tdao=new TransactionDAOImpl();  
-ArrayList<Transaction> t=(ArrayList<Transaction>)tdao.getTransaction();
-Iterator<Transaction> it=t.iterator(); %>
+    <% Customer c=(Customer)session.getAttribute("customer"); %>
+    <% TransactionDAO tdao = new TransactionDAOImpl();
+        ArrayList<Transaction> t = (ArrayList<Transaction>) tdao.getTransaction();
+        Iterator<Transaction> it = t.iterator(); %>
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4 class="text-white mb-4">Bank Dashboard</h4>
+        <h4>Bank Dashboard</h4>
         <nav class="nav flex-column">
-            <a class="nav-link" href="#"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a class="nav-link" href="Admin.jsp"><i class="bi bi-speedometer2"></i> Admin Page</a>
             <a class="nav-link" href="Deposit.jsp"><i class="bi bi-wallet2"></i> Deposit</a>
-            <a class="nav-link" href="#"><i class="bi bi-arrow-left-right"></i> Withdraw</a>
-            <a class="nav-link" href="#"><i class="bi bi-graph-up"></i> Investments</a>
-            <a class="nav-link" href="#"><i class="bi bi-credit-card"></i> Cards</a>
+            <a class="nav-link" href="TransferAmount.jsp"><i class="bi bi-arrow-left-right"></i> Transfer Amount</a>
+            <a class="nav-link" href="UpdateAccount.jsp"><i class="bi bi-graph-up"></i> Update Account</a>
+            <a class="nav-link" href="ResetPin.jsp"><i class="bi bi-credit-card"></i> Reset Pin</a>
             <a class="nav-link" href="#"><i class="bi bi-gear"></i> Settings</a>
         </nav>
     </div>
@@ -129,16 +193,16 @@ Iterator<Transaction> it=t.iterator(); %>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">SBI(State bank of india)</a>
+            <a class="navbar-brand" href="#">SBI (State Bank of India)</a>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <form action="Profile.jsp" method="get">
-                     <button type="submit" class="btn btn-primary btn-lg">Profile</button>
-                     </form>
+                        <button type="submit" class="btn btn-primary btn-lg">Profile</button>
+                    </form>
                 </li>
                 <li class="nav-item">
-                    <form action="/logout" method="POST">
-                    <button type="submit" class="btn btn-danger btn-lg"> Logout</button>
+                    <form action="Logout" method="get">
+                        <button type="submit" class="btn btn-danger btn-lg">Logout</button>
                     </form>
                 </li>
             </ul>
@@ -148,7 +212,7 @@ Iterator<Transaction> it=t.iterator(); %>
     <!-- Main Content -->
     <div class="main-content">
         <div class="container">
-            <h3 class="mb-4">Welcome, <%=c.getName()%></h3>
+            <h3 class="mb-4" style="color: #003366;">Welcome, <%= c.getName() %></h3>
 
             <!-- Dashboard Cards -->
             <div class="row g-3">
@@ -156,16 +220,15 @@ Iterator<Transaction> it=t.iterator(); %>
                     <div class="card">
                         <div class="card-header">Account Balance</div>
                         <div class="card-body">
-                            <h5><%=c.getBal() %></h5>
+                            <h5><%= c.getBal() %>/-</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header">Last Transaction</div>
+                        <div class="card-header">Apply loan</div>
                         <div class="card-body">
-                            <h5></h5>
-                            <p></p>
+                            <a href="#" class="btn btn-primary">Go To Application</a>
                         </div>
                     </div>
                 </div>
@@ -173,56 +236,55 @@ Iterator<Transaction> it=t.iterator(); %>
                     <div class="card">
                         <div class="card-header">Investment Value</div>
                         <div class="card-body">
-                            <h5></h5>
+                            <h5>In Progress</h5>
                         </div>
                     </div>
                 </div>
             </div>
 
-           <!-- Transaction Table -->
-      <div class="mt-4">
-    <h4>Recent Transactions</h4>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>UserID</th>
-                <th>TransactioID</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        
-            <% 
-            int i=0;
-           while(it.hasNext() && i<5){
-        	   Transaction T=it.next();
-            %>
-           
-            <tr>
-                <td><%= T.getDate() %></td>
-                <td><%= T.getUser()%></td>
-                <td><%=T.getTransactionId() %></td>
-                <td><%= T.getBalance() %></td>
-                <td><span class="badge bg-success"><%=T.getTransaction() %></span></td> 
-            </tr>
-            <% 
-            i++;
-            } 
-            %>
-           
-        </tbody>
-    </table>
-</div>
-      
-
+            <!-- Transaction Table -->
+            <div class="mt-4">
+                <h4>Recent Transactions</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>UserID</th>
+                            <th>Transaction ID</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                        int i = 0;
+                        while (it.hasNext() && i < 5) {
+                            Transaction T = it.next();
+                        %>
+                        
+                            <td><%= T.getDate() %></td>
+                            <td><%= T.getUser() %></td>
+                            <td><%= T.getTransactionId() %></td>
+                            <td><%= T.getBalance() %>/-</td>
+                            <td>
+                                <span class="badge <%= T.getTransaction().equals("Success") ? "bg-success" : "bg-danger" %>">
+                                    <%= T.getTransaction() %>
+                                </span>
+                            </td>
+                        </tr>
+                        <% 
+                        i++;
+                        } 
+                        %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        © 2024 State Bank of India. All rights reserved.
+        © 2024 State Bank of India. (Developed by @Shridhar) All rights reserved.
     </footer>
 
     <!-- Bootstrap Icons -->

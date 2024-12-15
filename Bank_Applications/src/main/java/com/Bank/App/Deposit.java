@@ -33,6 +33,11 @@ public class Deposit extends HttpServlet{
 		CustomerDAO cdao=new CustomerDAOImpl();
 		TransactionDAO tdao=new TransactionDAOImpl();
 		Customer c=(Customer)session.getAttribute("customer");
+		
+//		Transaction t1=new Transaction();
+//		t1.setUser(c.getAccno());
+//		session.setAttribute("tran", t1);
+		
 		if(accno==c.getAccno()&&pin==c.getPin())
 		{
 			c.setBal(c.getBal()+amount);

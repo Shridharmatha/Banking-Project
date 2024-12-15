@@ -30,10 +30,13 @@
 <body>
 
 <%Customer c=(Customer)session.getAttribute("customer"); %>
-<%Transaction t=(Transaction)session.getAttribute("transaction"); %>
+<%Transaction t1=new Transaction();
+t1.setUser(c.getAccno());
+session.setAttribute("tran", t1); %>
+<%Transaction t=(Transaction)session.getAttribute("tran"); %>
 
 <%TransactionDAO tdao=new TransactionDAOImpl();  
-ArrayList<Transaction> transList=(ArrayList<Transaction>)tdao.getTransaction();
+ArrayList<Transaction> transList=(ArrayList<Transaction>)tdao.getTransaction(t.getUser());
 Iterator<Transaction> it=transList.iterator(); %>
 
     <div class="container mt-5">
@@ -51,7 +54,7 @@ Iterator<Transaction> it=transList.iterator(); %>
                     <div class="col-md-6">
                         <p><strong>Name:</strong> <%=c.getName() %></p>
                         <p><strong>Email:</strong> <%=c.getMail() %> </p>
-                        
+                        <a href="Dashbord.jsp" class="btn btn-primary">Go To Dashbord</a>
                     </div>
                     <div class="col-md-6">
                         <p><strong>Phone:</strong> <%=c.getPhone() %></p>
