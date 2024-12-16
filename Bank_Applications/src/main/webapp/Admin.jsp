@@ -180,9 +180,9 @@ Iterator<Customer> it=lst.iterator(); %>
                         <td><%=C.getPin()%></td>
                         <td>
                         <form action="delete" method="post">
-                        <input type="hidden" name="acc" value="<%=c.getAccno() %>">
-                        <input type="hidden" name="amount" value="<%=c.getBal() %>">
-                        <button class="delete-btn" type="submit">Delete</button></form></td>
+                        <input type="hidden" name="acc" value="<%=C.getAccno()%>">
+                        <input type="hidden" name="amt" value="<%=C.getBal()%>">
+                        <input class="delete-btn" type="submit" value="Delete"></form></td>
                     </tr>
                     <%
                     }%>

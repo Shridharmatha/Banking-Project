@@ -176,7 +176,7 @@
     <% TransactionDAO tdao = new TransactionDAOImpl();
         ArrayList<Transaction> t = (ArrayList<Transaction>) tdao.getTransaction();
         Iterator<Transaction> it = t.iterator(); %>
-
+<%if(c.getAccno()==1100110011){ %>
     <!-- Sidebar -->
     <div class="sidebar">
         <h4>Bank Dashboard</h4>
@@ -189,7 +189,20 @@
             <a class="nav-link" href="#"><i class="bi bi-gear"></i> Settings</a>
         </nav>
     </div>
+<%}else{%>
 
+<div class="sidebar">
+        <h4>Bank Dashboard</h4>
+        <nav class="nav flex-column">
+           
+            <a class="nav-link" href="Deposit.jsp"><i class="bi bi-wallet2"></i> Deposit</a>
+            <a class="nav-link" href="TransferAmount.jsp"><i class="bi bi-arrow-left-right"></i> Transfer Amount</a>
+            <a class="nav-link" href="UpdateAccount.jsp"><i class="bi bi-graph-up"></i> Update Account</a>
+            <a class="nav-link" href="ResetPin.jsp"><i class="bi bi-credit-card"></i> Reset Pin</a>
+            <a class="nav-link" href="#"><i class="bi bi-gear"></i> Settings</a>
+        </nav>
+    </div>
+<% }%>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">

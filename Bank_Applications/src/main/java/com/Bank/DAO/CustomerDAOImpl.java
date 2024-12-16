@@ -209,41 +209,41 @@ public boolean insertCustomer(Customer c) {
 		 }
 	}
 
-	public boolean deleteCustomer(Customer c) {
-		 PreparedStatement ps=null;
-		 int res=0;
-		 String query="DELETE FROM CUSTOMER WHERE ACC_NO=?";
-		 try {
-		 con.setAutoCommit(false);
-		 ps=con.prepareStatement(query);
-		 ps.setLong(1, c.getAccno());
-		 res=ps.executeUpdate();
-		 
-		 } catch (SQLException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
-		 if(res>0)
-		 {
-		 try {
-		 con.commit();
-		 } catch (SQLException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
-		 return true;
-		 }
-		 else
-		 {
-		 try {
-		 con.rollback();
-		 } catch (SQLException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
-		 return false;
-		 }
-		}
+//	public boolean deleteCustomer(Customer c) {
+//		 PreparedStatement ps=null;
+//		 int res=0;
+//		 String query="DELETE FROM CUSTOMER WHERE ACC_NO=?";
+//		 try {
+//		 con.setAutoCommit(false);
+//		 ps=con.prepareStatement(query);
+//		 ps.setLong(1, c.getAccno());
+//		 res=ps.executeUpdate();
+//		 
+//		 } catch (SQLException e) {
+//		 // TODO Auto-generated catch block
+//		 e.printStackTrace();
+//		 }
+//		 if(res>0)
+//		 {
+//		 try {
+//		 con.commit();
+//		 } catch (SQLException e) {
+//		 // TODO Auto-generated catch block
+//		 e.printStackTrace();
+//		 }
+//		 return true;
+//		 }
+//		 else
+//		 {
+//		 try {
+//		 con.rollback();
+//		 } catch (SQLException e) {
+//		 // TODO Auto-generated catch block
+//		 e.printStackTrace();
+//		 }
+//		 return false;
+//		 }
+//		}
 	
 	public Customer getCustomer(String mail, int pass) {
 		PreparedStatement ps=null;
@@ -309,40 +309,7 @@ public boolean insertCustomer(Customer c) {
 		}
 	}
 	
-//	public boolean deleteCustomre(Customer c) {
-//		PreparedStatement ps=null;
-//		 int res=0;
-//		 String query="DELETE FROM CUSTOMER WHERE ACC_NO=?";
-//		 try {
-//		 con.setAutoCommit(false);
-//		 ps=con.prepareStatement(query);
-//		 ps.setLong(1, c.getAccno());
-//		 res=ps.executeUpdate();
-//		 
-//		 } catch (SQLException e) {
-//		 // TODO Auto-generated catch block
-//		 e.printStackTrace();
-//		 }
-//		 if(res>0)
-//		 {
-//		 try {
-//		 con.commit();
-//		 } catch (SQLException e) {
-//		 // TODO Auto-generated catch block
-//		 e.printStackTrace();
-//		 }
-//		 return true;
-//		 }
-//		 else
-//		 {
-//		 try {
-//		 con.rollback();
-//		 } catch (SQLException e) {
-//		 // TODO Auto-generated catch block
-//		 e.printStackTrace();
-//		 }
-//		 return false;
-//		 }
+
 	
 
 

@@ -35,9 +35,9 @@ public class Login extends HttpServlet{
 			RequestDispatcher rd=req.getRequestDispatcher("Dashbord.jsp");
 			rd.forward(req, resp);	
 			
-//			session.setAttribute("customer",c);
-//			RequestDispatcher rd2=req.getRequestDispatcher("Profile.jsp");
-//			rd2.forward(req, resp);	
+			session.setAttribute("customer",c);
+			RequestDispatcher rd2=req.getRequestDispatcher("Admin.jsp");
+			rd2.forward(req, resp);	
 			
 
 		}else {
