@@ -47,6 +47,7 @@ public class Signup extends HttpServlet
 			if(res)
 			{
 				req.setAttribute("success", "data added Successfully");
+				req.setAttribute("cust", c);
 				RequestDispatcher rd=req.getRequestDispatcher("Login.jsp");
 				rd.forward(req, resp);
 				

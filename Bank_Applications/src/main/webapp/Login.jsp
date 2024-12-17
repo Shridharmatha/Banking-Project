@@ -1,3 +1,4 @@
+<%@page import="com.Bank.DTO.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -81,6 +82,7 @@
                         <h3>Login</h3>
                     </div>
                     <div class="card-body">
+                    <%Customer c=(Customer)request.getAttribute("cust"); %>
                         <% String success = (String) request.getAttribute("success"); 
                            if (success != null) { %>
                             <div class="alert alert-success text-center">
@@ -96,7 +98,11 @@
                         <form action="Login" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
+                                <%if(c!=null){ %>
+                                <input type="email" class="form-control" id="email" name="mail" value="<%=c.getMail() %>" required>
+                                <%}else{ %>
                                 <input type="email" class="form-control" id="email" name="mail" placeholder="Enter your email" required>
+                                <%} %>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">PIN</label>
