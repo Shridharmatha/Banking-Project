@@ -46,7 +46,7 @@ public class TransferAmount extends HttpServlet{
 					t1.setTransactionId(TransactionID.generateTransactionId());
 					t1.setUser(c.getAccno());
 					t1.setRec_acc(receiver.getAccno());
-					t1.setTransaction("Debited");
+					t1.setTransaction("DEBITED");
 					t1.setAmount(amount);
 					t1.setBalance(c.getBal());
 					boolean res1=tdao.insertTransaction(t1);
