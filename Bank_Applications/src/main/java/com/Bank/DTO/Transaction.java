@@ -1,11 +1,11 @@
 package com.Bank.DTO;
-import java.sql.Date;
+//import java.sql.Date;
 
 public class Transaction {
 	private long transactionId;
 	private long user;
 	private long rec_acc;
-	private Date date;
+	private String date;
 	private String transaction;
 	private double amount;
 	private double balance;
@@ -14,7 +14,7 @@ public class Transaction {
 	 
 	}
 	public Transaction(long transactionId, long user, long rec_acc, 
-	Date date, String transaction, double amount,
+	String date, String transaction, double amount,
 	 double balance) {
 	 super();
 	 this.transactionId = transactionId;
@@ -43,10 +43,10 @@ public class Transaction {
 	public void setRec_acc(long rec_acc) {
 	 this.rec_acc = rec_acc;
 	}
-	public Date getDate() {
+	public String getDate() {
 	 return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 	 this.date = date;
 	}
 	

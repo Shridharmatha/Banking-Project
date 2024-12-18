@@ -159,8 +159,8 @@ Iterator<Transaction> it=lst.iterator();%>
                     </tr>
                 </thead>
                 <tbody>
-                <%while(it.hasNext()) {
-                Transaction T=it.next();
+                <% while(it.hasNext()) {
+                  Transaction T=it.next();
                 %>
                     <tr>
                         <td><%=T.getTransactionId() %></td>

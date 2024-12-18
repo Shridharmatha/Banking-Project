@@ -51,7 +51,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	public List getTransaction() {
 		 PreparedStatement ps=null;
 		 ResultSet rs=null;
-		 String query="SELECT * FROM PASSBOOK ORDER BY TRAN_DATE desc";
+		 String query="SELECT *,date_format(tran_date,'%Y-%b-%d %h:%i:%s') as datefor FROM PASSBOOK ORDER BY TRAN_DATE desc";
 		 Transaction t=null;
 		 ArrayList<Transaction> passbook=new ArrayList<Transaction>();
 		try {
@@ -63,7 +63,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 		 t.setTransactionId(rs.getLong(1));
 		 t.setUser(rs.getLong(2));
 		 t.setRec_acc(rs.getLong(3));
-		 t.setDate(rs.getDate(4));
+		 t.setDate(rs.getString("datefor"));
 		 t.setTransaction(rs.getString(5));
 		 t.setAmount(rs.getDouble(6));
 		 t.setBalance(rs.getDouble(7));
@@ -80,7 +80,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	public List getTransaction(long user) {
 		PreparedStatement ps=null;
 		 ResultSet rs=null;
-		 String query="SELECT * FROM PASSBOOK WHERE USER_ACC=? ORDER BY TRAN_DATE desc";
+		 String query="SELECT *,date_format(tran_date,'%Y-%b-%d %h:%i:%s') as datefor FROM PASSBOOK WHERE USER_ACC=? ORDER BY TRAN_DATE desc";
 		 Transaction t=null;
 		 ArrayList<Transaction> passbook=new ArrayList<Transaction>();
 		try {
@@ -93,7 +93,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 		 t.setTransactionId(rs.getLong(1));
 		 t.setUser(rs.getLong(2));
 		 t.setRec_acc(rs.getLong(3));
-		 t.setDate(rs.getDate(4));
+		 t.setDate(rs.getString("datefor"));
 		 t.setTransaction(rs.getString(5));
 		 t.setAmount(rs.getDouble(6));
 		 t.setBalance(rs.getDouble(7));
@@ -122,7 +122,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 		 t.setTransactionId(rs.getLong(1));
 		 t.setUser(rs.getLong(2));
 		 t.setRec_acc(rs.getLong(3));
-		 t.setDate(rs.getDate(4));
+		 t.setDate(rs.getString(4));
 		 t.setTransaction(rs.getString(5));
 		 t.setAmount(rs.getDouble(6));
 		 t.setBalance(rs.getDouble(7));

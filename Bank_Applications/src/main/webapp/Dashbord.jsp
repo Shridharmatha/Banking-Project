@@ -269,6 +269,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <tr>
                         <% 
                         int i = 0;
                         while (it.hasNext() && i < 5) {
